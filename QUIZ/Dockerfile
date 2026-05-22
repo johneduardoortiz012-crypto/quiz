@@ -1,5 +1,5 @@
 # 1. Cambiamos openjdk por una imagen mantenida y oficial (Eclipse Temurin)
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:21-jre-alpine
 
 # 2. Creamos un directorio de trabajo limpio
 WORKDIR /app
