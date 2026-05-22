@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Clubes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+  <h2>🏟️ Clubes</h2>
+  <a href="/clubes/nuevo" class="btn btn-primary mb-3">+ Nuevo Club</a>
+  <a href="/" class="btn btn-secondary mb-3">← Inicio</a>
+  <table class="table table-bordered table-striped bg-white">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th><th>Nombre</th><th>Entrenador</th>
+        <th>Asociación</th><th>Jugadores</th><th>Competiciones</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="c : ${clubes}">
+        <td th:text="${c.id}"/>
+        <td th:text="${c.nombre}"/>
+        <td th:text="${c.entrenador != null ? c.entrenador.nombre + ' ' + c.entrenador.apellido : '-'}"/>
+        <td th:text="${c.asociacion != null ? c.asociacion.nombre : '-'}"/>
+        <td th:text="${c.jugadores != null ? c.jugadores.size() : 0}"/>
+        <td th:text="${c.competiciones != null ? c.competiciones.size() : 0}"/>
+        <td>
+          <a th:href="@{/clubes/editar/{id}(id=${c.id})}" class="btn btn-sm btn-warning">Editar</a>
+          <a th:href="@{/clubes/eliminar/{id}(id=${c.id})}" class="btn btn-sm btn-danger"
+             onclick="return confirm('¿Eliminar?')">Eliminar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
